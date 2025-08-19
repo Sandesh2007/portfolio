@@ -1,13 +1,23 @@
 'use client';
 
-import { FaReact, FaRust, FaJava, FaLinux } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript, SiSupabase, SiTailwindcss, SiGtk, SiFlutter } from "react-icons/si";
-import React, { JSX, useState } from 'react';
+import { FaReact, FaRust } from "react-icons/fa";
+import { SiNextdotjs, SiTypescript, SiSupabase, SiTailwindcss, SiGtk, SiFlutter, SiYoutubemusic } from "react-icons/si";
+import React, { JSX } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
-import { Button } from "@/components/ui/button";
+import { ExternalLink, Film, Github, Linkedin, Mail, MusicIcon, Plus } from 'lucide-react';
 import { ThemeToggle } from "@/components/themeToggle";
 import Link from "next/link";
+import { GithubOriginal, JavaOriginal, LinuxOriginal, Windows11Original } from "devicons-react";
+import SpotlightCard from "@/components/*/Components/SpotlightCard/SpotlightCard";
+import SplitText from "@/components/*/TextAnimations/SplitText/SplitText";
+import { BsSpotify, BsTiktok, BsYoutube } from "react-icons/bs";
+import { Button } from "@/components/ui/button";
+import { Header } from "@/components/header";
+import { CgInstagram } from "react-icons/cg";
+import { SpotifyIcon } from "@/components/icons/spotify";
+import { Youtubemusic } from "@/components/icons/youtube-music";
+import { Instagram } from "@/components/icons/instagram";
+import { Youtube } from "@/components/icons/youtube";
 
 type Project = {
   title: string;
@@ -28,8 +38,8 @@ const techMeta: Record<string, { icon: JSX.Element; color: string }> = {
   GTK: { icon: <SiGtk />, color: "text-green-700" },
   GTK4: { icon: <SiGtk />, color: "text-green-700" },
   Flutter: { icon: <SiFlutter />, color: "text-sky-400" },
-  Java: { icon: <FaJava />, color: "text-red-600" },
-  Linux: { icon: <FaLinux />, color: "text-gray-700 dark:text-gray-200" },
+  Java: { icon: <JavaOriginal size={30} />, color: "text-red-600" },
+  Linux: { icon: <LinuxOriginal size={30} />, color: "text-gray-700 dark:text-gray-200" },
 };
 
 
@@ -75,34 +85,20 @@ export default function Portfolio(): JSX.Element {
   return (
     <div>
       {/* Header / Nav */}
-      <header className="w-full py-4 px-6 flex items-center justify-between">
-        <span className="font-semibold tracking-wide">SAN DESH</span>
-        <nav className="flex items-center gap-4 text-sm">
-          <a href="#projects" className="hover:underline">
-            Projects
-          </a>
-          <a href="#skills" className="hover:underline">
-            Skills
-          </a>
-          <a href="#contact" className="hover:underline">
-            Contact
-          </a>
-          <ThemeToggle/>
-        </nav>
-      </header>
+      <Header />
 
       {/* Hero */}
       <main>
         <section className="flex flex-col items-center text-center py-20 px-6">
           <motion.h1
-            initial={{ opacity: 0, y: -12 }}
+            initial={{ opacity: 0.8, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl font-bold mb-4"
           >
-            Hi, I&apos;m <span className="text-blue-600">Sandesh</span>
+            Hi, I&apos;m <span>Sandesh</span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.8 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.15 }}
             className="text-lg max-w-xl opacity-80"
@@ -141,23 +137,28 @@ export default function Portfolio(): JSX.Element {
             {skills.map((skill) => {
               const meta = techMeta[skill];
               return (
-                <div
+                <SpotlightCard
                   key={skill}
                   className="flex flex-col items-center gap-2 p-4 rounded-xl glass outline outline-primary hover:shadow-sm transition"
                 >
                   <span className={`text-3xl ${meta?.color}`}>{meta?.icon}</span>
                   <span className="text-sm font-medium">{skill}</span>
-                </div>
+                </SpotlightCard>
               );
             })}
           </div>
         </section>
 
+        {/* My Projects */}
         <section id="projects" className="py-16 px-6">
-          <h2 className="text-3xl font-semibold text-center mb-8">Projects</h2>
+          <h2 className="text-3xl font-semibold text-center mb-2">Projects</h2>
+          <p className="text-center opacity-80 mb-6">
+            Here are some of my recent projects that showcase my skills and interests.
+          </p>
           <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
             {projects.map((p) => (
-              <article
+              <SpotlightCard
+                spotlightColor="rgba(59, 130, 246, 0.3)"
                 key={p.title}
                 className="p-6 rounded-xl glass outline outline-primary hover:shadow-sm transition-shadow"
               >
@@ -179,31 +180,83 @@ export default function Portfolio(): JSX.Element {
                 </ul>
                 <div className="flex gap-4">
                   {p.github && isValidLink(p.github) && (
-                    <a
-                      href={p.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="underline"
+                    <Button
+                      variant={"default"}
+                      size={"sm"}
+                      className="flex items-center gap-2 transition-all duration-200 hover:scale-105 group/btn text-neutral-50"
                     >
-                      GitHub
-                    </a>
+                      <Github /> <span>Code</span>
+                    </Button>
                   )}
                   {p.demo && isValidLink(p.demo) && (
-                    <a
-                      href={p.demo}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="underline"
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className='transition-all duration-200 hover:scale-105 group/btn'
                     >
-                      Live Demo
-                    </a>
+                      <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-200" />
+                      Visit
+                    </Button>
                   )}
                 </div>
-              </article>
+              </SpotlightCard>
             ))}
           </div>
         </section>
 
+        {/* My hobbies */}
+        <section id="hobbies" className="py-16 px-6">
+          <h2 className="text-3xl font-semibold text-center mb-8">Hobbies</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+
+            <SpotlightCard className="flex flex-col items-center gap-3 p-6 rounded-xl glass outline outline-primary hover:shadow-sm transition">
+              <Film size={32} />
+              <span className="text-lg font-medium">Editing</span>
+              <p className="text-sm opacity-80 text-center">
+                I enjoy making edits of movies, web-series and anime in my free time.
+              </p>
+              <div className="flex items-center gap-4 mt-3">
+                <Link
+                  href="https://www.instagram.com/sanzo_am"
+                  target="_blank"
+                  className="hover:opacity-80 flex flex-col justify-center items-center hover:bg-blue-500/40 p-2 rounded-md"
+                >
+                  <Instagram className="text-3xl" />
+                  <span>@sanzo_am</span>
+                </Link>
+                <Link
+                  href="https://www.youtube.com/@Sanzo_am"
+                  target="_blank"
+                  className="hover:opacity-80 flex flex-col justify-center items-center hover:bg-red-500/40 p-2 rounded-md"
+                >
+                  <Youtube className="text-3xl text-red-500" />
+                  <span>@Sanzo_am</span>
+                </Link>
+              </div>
+            </SpotlightCard>
+
+            <SpotlightCard className="flex flex-col items-center gap-3 p-6 rounded-xl glass outline outline-primary hover:shadow-sm transition">
+              <MusicIcon size={32} />
+              <span className="text-lg font-medium">Listening to Music</span>
+              <p className="text-sm opacity-80 text-center">
+                Music keeps me inspired and focused while working on my projects.
+              </p>
+              <iframe
+                src="https://open.spotify.com/embed/track/1WTlony1MLK4u5OaG8uTLg"
+                width="full"
+                height="152"
+                allow="clipboard-write; encrypted-media; picture-in-picture"
+                loading="lazy"
+                className="rounded-lg mt-3"
+              />
+
+            </SpotlightCard>
+
+          </div>
+        </section>
+
+
+        {/* Contact */}
         <section id="contact" className="py-16 px-6 text-center">
           <h2 className="text-3xl font-semibold mb-4">Get in Touch</h2>
           <p className="opacity-80 mb-6">
@@ -219,7 +272,7 @@ export default function Portfolio(): JSX.Element {
       </main>
 
       <footer className="py-6 text-center text-sm opacity-70">
-        © {new Date().getFullYear()} Sandesh Paudel.
+        © {new Date().getFullYear()} Sandesh.
       </footer>
     </div>
   );
