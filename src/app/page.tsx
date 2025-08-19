@@ -211,7 +211,7 @@ export default function Portfolio(): JSX.Element {
           </p>
           <Link
             href="mailto:sandeshsharma924@gmail.com"
-            className="px-6 py-3 rounded-xl outline outline-primary inline-block"
+            className="px-6 py-3 rounded-xl glass outline outline-primary inline-block"
           >
             Contact Me
           </Link>
