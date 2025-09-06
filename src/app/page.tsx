@@ -1,21 +1,15 @@
 'use client';
 
 import { FaReact, FaRust } from "react-icons/fa";
-import { SiNextdotjs, SiTypescript, SiSupabase, SiTailwindcss, SiGtk, SiFlutter, SiYoutubemusic } from "react-icons/si";
+import { SiNextdotjs, SiTypescript, SiSupabase, SiTailwindcss, SiGtk, SiFlutter } from "react-icons/si";
 import React, { JSX } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Film, Github, Linkedin, Mail, MusicIcon, Plus } from 'lucide-react';
-import { ThemeToggle } from "@/components/themeToggle";
+import { ExternalLink, Film, Github, Linkedin, Mail, MusicIcon } from 'lucide-react';
 import Link from "next/link";
-import { GithubOriginal, JavaOriginal, LinuxOriginal, Windows11Original } from "devicons-react";
+import { JavaOriginal, LinuxOriginal } from "devicons-react";
 import SpotlightCard from "@/components/*/Components/SpotlightCard/SpotlightCard";
-import SplitText from "@/components/*/TextAnimations/SplitText/SplitText";
-import { BsSpotify, BsTiktok, BsYoutube } from "react-icons/bs";
 import { Button } from "@/components/ui/button";
-import { Header } from "@/components/header";
-import { CgInstagram } from "react-icons/cg";
-import { SpotifyIcon } from "@/components/icons/spotify";
-import { Youtubemusic } from "@/components/icons/youtube-music";
+import { Header } from "@/components/navbar";
 import { Instagram } from "@/components/icons/instagram";
 import { Youtube } from "@/components/icons/youtube";
 
@@ -103,7 +97,7 @@ export default function Portfolio(): JSX.Element {
             transition={{ delay: 0.15 }}
             className="text-lg max-w-xl opacity-80"
           >
-            Programmer focused on modern web & software, with a taste for clean UI.
+            Linux enthusiast & programmer who loves contributing to open-source and learning rust, C++ and Java.
           </motion.p>
           <div className="flex gap-4 mt-6">
             <a
