@@ -62,7 +62,7 @@ const projects: Project[] = [
   {
     title: 'Better Bar',
     description:
-      'Rust + GTK4 Sleek gtk bar for BTDE.',
+      'Rust + GTK4 Sleek gtk bar for BTDE. (UNDER DEVELOPMENT)',
     github: 'https://github.com/better-ecosystem/better-bar',
     demo: '#',
     tech: ['Rust', 'GTK4'],
@@ -177,6 +177,7 @@ export default function Portfolio(): JSX.Element {
                     <Button
                       variant={"default"}
                       size={"sm"}
+                      onClick={() => window.open(p.github, '_blank')}
                       className="flex items-center gap-2 transition-all duration-200 hover:scale-105 group/btn text-neutral-50"
                     >
                       <Github /> <span>Code</span>
@@ -186,6 +187,7 @@ export default function Portfolio(): JSX.Element {
                     <Button
                       variant="outline"
                       size="sm"
+                      onClick={() => window.open(p.demo, '_blank')}
                       className='transition-all duration-200 hover:scale-105 group/btn'
                     >
                       <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-200" />
@@ -213,7 +215,7 @@ export default function Portfolio(): JSX.Element {
                 <Link
                   href="https://www.instagram.com/sanzo_am"
                   target="_blank"
-                  className="hover:opacity-80 flex flex-col justify-center items-center hover:bg-blue-500/40 p-2 rounded-md"
+                  className="hover:opacity-80 flex flex-col outline justify-center items-center hover:bg-blue-500/40 p-2 rounded-md"
                 >
                   <Instagram className="text-3xl" />
                   <span>@sanzo_am</span>
@@ -221,7 +223,7 @@ export default function Portfolio(): JSX.Element {
                 <Link
                   href="https://www.youtube.com/@Sanzo_am"
                   target="_blank"
-                  className="hover:opacity-80 flex flex-col justify-center items-center hover:bg-red-500/40 p-2 rounded-md"
+                  className="hover:opacity-80 flex flex-col outline justify-center items-center hover:bg-red-500/40 p-2 rounded-md"
                 >
                   <Youtube className="text-3xl text-red-500" />
                   <span>@Sanzo_am</span>
@@ -267,6 +269,27 @@ export default function Portfolio(): JSX.Element {
 
       <footer className="py-6 text-center text-sm opacity-70">
         © {new Date().getFullYear()} Sandesh.
+
+        <div className="compo">
+          Components used in this site are from{' '}
+          <a
+            href="https://ui.shadcn.com"
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:opacity-80"
+          >
+            shadcn/ui
+          </a>
+          {' '} and{' '}
+          <a href="https://reactbits.dev"
+          target="_blank"
+          rel="noreferrer"
+          className="underline hover:opacity-80"
+          >
+            react bits
+          </a>
+         .
+        </div>
       </footer>
     </div>
   );
