@@ -1,6 +1,7 @@
 'use client';
 
 import { FaReact, FaRust } from "react-icons/fa";
+import { ImCrying2 } from "react-icons/im";
 import { SiNextdotjs, SiTypescript, SiSupabase, SiTailwindcss, SiGtk, SiFlutter } from "react-icons/si";
 import React, { JSX } from 'react';
 import { motion } from 'framer-motion';
@@ -22,11 +23,11 @@ type Project = {
 };
 
 
-const techMeta: Record<string, { icon: JSX.Element; color: string }> = {
+const techMeta: Record<string, { icon: JSX.Element; hoverIcon?: JSX.Element; color: string }> = {
   React: { icon: <FaReact />, color: "text-sky-500" },
   "Next.js": { icon: <SiNextdotjs />, color: "text-black dark:text-white" },
   TypeScript: { icon: <SiTypescript />, color: "text-blue-600" },
-  Rust: { icon: <FaRust />, color: "text-orange-700" },
+  Rust: { icon: <FaRust />, hoverIcon: <ImCrying2 />, color: "text-orange-700" },
   Supabase: { icon: <SiSupabase />, color: "text-emerald-600" },
   TailwindCSS: { icon: <SiTailwindcss />, color: "text-cyan-500" },
   GTK: { icon: <SiGtk />, color: "text-green-700" },
@@ -62,10 +63,10 @@ const projects: Project[] = [
   {
     title: 'Better Bar',
     description:
-      'Rust + GTK4 Sleek gtk bar for BTDE. (UNDER DEVELOPMENT)',
+      'Rust + GTK4 Sleek gtk bar for BTDE. (UNDER DEVELOPMENT, Real pain in my ass)',
     github: 'https://github.com/better-ecosystem/better-bar',
     demo: '#',
-    tech: ['Rust', 'GTK4'],
+    tech: ['Rust', 'GTK4', 'Linux'],
   },
 ];
 
@@ -135,7 +136,21 @@ export default function Portfolio(): JSX.Element {
                   key={skill}
                   className="flex flex-col items-center gap-2 p-4 rounded-xl glass outline outline-primary hover:shadow-sm transition"
                 >
-                  <span className={`text-3xl ${meta?.color}`}>{meta?.icon}</span>
+                  <div className="text-3xl relative group">
+                    <span
+                      className={`${meta.color} transition-opacity duration-200 ${meta.hoverIcon ? "group-hover:opacity-0" : ""
+                        }`}
+                    >
+                      {meta.icon}
+                    </span>
+
+                    {meta.hoverIcon && (
+                      <span className={`absolute inset-0 flex justify-center items-center opacity-0 transition-opacity duration-200 group-hover:opacity-100`}>
+                        {meta.hoverIcon}
+                      </span>
+                    )}
+                  </div>
+
                   <span className="text-sm font-medium">{skill}</span>
                 </SpotlightCard>
               );
@@ -147,7 +162,7 @@ export default function Portfolio(): JSX.Element {
         <section id="projects" className="py-16 px-6">
           <h2 className="text-3xl font-semibold text-center mb-2">Projects</h2>
           <p className="text-center opacity-80 mb-6">
-            Here are some of my recent projects that showcase my skills and interests.
+            My recent project which i loved building.
           </p>
           <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
             {projects.map((p) => (
@@ -164,10 +179,10 @@ export default function Portfolio(): JSX.Element {
                     return (
                       <li
                         key={t}
-                        className="flex items-center gap-1 px-2 py-1 rounded-md border"
+                        className="inline-flex items-center gap-1.5 px-3 py-2 rounded-md border whitespace-nowrap h-8"
                       >
-                        <span className={`text-base ${meta?.color}`}>{meta?.icon}</span>
-                        {t}
+                        <span className={`text-sm leading-none ${meta?.color}`}>{meta?.icon}</span>
+                        <span className="leading-none">{t}</span>
                       </li>
                     );
                   })}
@@ -282,13 +297,13 @@ export default function Portfolio(): JSX.Element {
           </a>
           {' '} and{' '}
           <a href="https://reactbits.dev"
-          target="_blank"
-          rel="noreferrer"
-          className="underline hover:opacity-80"
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:opacity-80"
           >
             react bits
           </a>
-         .
+          .
         </div>
       </footer>
     </div>
