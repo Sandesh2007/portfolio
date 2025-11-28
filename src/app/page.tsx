@@ -7,7 +7,7 @@ import React, { JSX } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Film, Github, Linkedin, Mail, MusicIcon } from 'lucide-react';
 import Link from "next/link";
-import { JavaOriginal, LinuxOriginal } from "devicons-react";
+import { JavaOriginal, LinuxOriginal, PythonOriginal } from "devicons-react";
 import SpotlightCard from "@/components/*/Components/SpotlightCard/SpotlightCard";
 import { Button } from "@/components/ui/button";
 import { Header } from "@/components/navbar";
@@ -22,19 +22,28 @@ type Project = {
   tech: string[];
 };
 
+type Contrubutions = {
+  title: string;
+  description: string;
+  github?: string;
+  contrib?: string;
+  tech: string[];
+}
+
 
 const techMeta: Record<string, { icon: JSX.Element; hoverIcon?: JSX.Element; color: string }> = {
-  React: { icon: <FaReact />, color: "text-sky-500" },
-  "Next.js": { icon: <SiNextdotjs />, color: "text-black dark:text-white" },
-  TypeScript: { icon: <SiTypescript />, color: "text-blue-600" },
-  Rust: { icon: <FaRust />, hoverIcon: <ImCrying2 />, color: "text-orange-700" },
-  Supabase: { icon: <SiSupabase />, color: "text-emerald-600" },
-  TailwindCSS: { icon: <SiTailwindcss />, color: "text-cyan-500" },
-  GTK: { icon: <SiGtk />, color: "text-green-700" },
-  GTK4: { icon: <SiGtk />, color: "text-green-700" },
-  Flutter: { icon: <SiFlutter />, color: "text-sky-400" },
+  React: { icon: <FaReact size={30} />, color: "text-sky-500" },
+  "Next.js": { icon: <SiNextdotjs size={30} />, color: "text-black dark:text-white" },
+  TypeScript: { icon: <SiTypescript size={30} />, color: "text-blue-600" },
+  Rust: { icon: <FaRust size={30} />, hoverIcon: <ImCrying2 />, color: "text-orange-700" },
+  Supabase: { icon: <SiSupabase size={30} />, color: "text-emerald-600" },
+  TailwindCSS: { icon: <SiTailwindcss size={30} />, color: "text-cyan-500" },
+  GTK: { icon: <SiGtk size={30} />, color: "text-green-700" },
+  GTK4: { icon: <SiGtk size={30} />, color: "text-green-700" },
+  Flutter: { icon: <SiFlutter size={30} />, color: "text-sky-400" },
   Java: { icon: <JavaOriginal size={30} />, color: "text-red-600" },
   Linux: { icon: <LinuxOriginal size={30} />, color: "text-gray-700 dark:text-gray-200" },
+  Python: { icon: <PythonOriginal size={30} />, color: "text-yellow-600" },
 };
 
 
@@ -48,7 +57,8 @@ const skills = [
   'GTK',
   'Flutter',
   'Java',
-  'Linux'
+  'Linux',
+  'Python',
 ] as const;
 
 const projects: Project[] = [
@@ -69,6 +79,23 @@ const projects: Project[] = [
     tech: ['Rust', 'GTK4', 'Linux'],
   },
 ];
+
+const contrubute: Contrubutions[] = [
+  {
+    title: 'Waypaper',
+    description: 'GUI wallpaper setter for Wayland and Xorg window managers. It works as a frontend for popular wallpaper backends like swaybg, swww, wallutils, hyprpaper, mpvpaper and feh.',
+    github: 'https://github.com/anufrievroman/waypaper',
+    contrib: 'https://github.com/anufrievroman/waypaper/commits/main/?author=Sandesh2007',
+    tech: ['Python', 'GTK', 'Linux'],
+  },
+  {
+    title: 'Better Control',
+    description: 'A sleek GTK-themed control panel for Linux 🐧, written in python and gtk3.',
+    github: 'https://github.com/better-ecosystem/better-control/',
+    contrib: 'https://github.com/better-ecosystem/better-control/commits/main/?author=Sandesh2007',
+    tech: ['Python', 'GTK', 'Linux'],
+  }
+]
 
 function isValidLink(href: string): boolean {
   return /^https?:\/\/|^mailto:/.test(href);
@@ -179,9 +206,9 @@ export default function Portfolio(): JSX.Element {
                     return (
                       <li
                         key={t}
-                        className="inline-flex items-center gap-1.5 px-3 py-2 rounded-md border whitespace-nowrap h-8"
+                        className="inline-flex items-center gap-1.5 p-4 rounded-md border-r whitespace-nowrap h-8"
                       >
-                        <span className={`text-sm leading-none ${meta?.color}`}>{meta?.icon}</span>
+                        <span className={`px-1 py-3 leading-none ${meta?.color}`}>{meta.icon}</span>
                         <span className="leading-none">{t}</span>
                       </li>
                     );
@@ -207,6 +234,64 @@ export default function Portfolio(): JSX.Element {
                     >
                       <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-200" />
                       Visit
+                    </Button>
+                  )}
+                </div>
+              </SpotlightCard>
+            ))}
+          </div>
+        </section>
+
+        {/* Contributed to */}
+
+        <section id="projects" className="py-16 px-6">
+          <h2 className="text-3xl font-semibold text-center mb-2">Contributions</h2>
+          <p className="text-center opacity-80 mb-6">
+            Some of the projects i contributed to.
+          </p>
+          <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+            {contrubute.map((p) => (
+              <SpotlightCard
+                spotlightColor="rgba(59, 130, 246, 0.3)"
+                key={p.title}
+                className="p-6 rounded-xl glass outline outline-primary hover:shadow-sm transition-shadow"
+              >
+                <h3 className="text-xl font-bold mb-2">{p.title}</h3>
+                <p className="opacity-80 mb-4">{p.description}</p>
+                <ul className="flex flex-wrap gap-2 text-xs mb-4">
+                  {p.tech.map((t) => {
+                    const meta = techMeta[t];
+                    return (
+                      <li
+                        key={t}
+                        className="inline-flex items-center gap-1.5 p-4 rounded-md border-r whitespace-nowrap h-8"
+                      >
+                        <span className={`text-sm leading-none ${meta?.color}`}>{meta?.icon}</span>
+                        <span className="leading-none">{t}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <div className="flex gap-4">
+                  {p.github && isValidLink(p.github) && (
+                    <Button
+                      variant={"default"}
+                      size={"sm"}
+                      onClick={() => window.open(p.github, '_blank')}
+                      className="flex items-center gap-2 transition-all duration-200 hover:scale-105 group/btn text-neutral-50"
+                    >
+                      <Github /> <span>Code</span>
+                    </Button>
+                  )}
+                  {p.contrib && isValidLink(p.contrib) && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => window.open(p.contrib, '_blank')}
+                      className='transition-all duration-200 hover:scale-105 group/btn'
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform duration-200" />
+                      Contributions
                     </Button>
                   )}
                 </div>
@@ -250,7 +335,7 @@ export default function Portfolio(): JSX.Element {
               <MusicIcon size={32} />
               <span className="text-lg font-medium">Listening to Music</span>
               <p className="text-sm opacity-80 text-center">
-                Music keeps me inspired and focused while working on my projects.
+                Oviously the only thing that keeps me focused while working.
               </p>
               <iframe
                 src="https://open.spotify.com/embed/track/1WTlony1MLK4u5OaG8uTLg"
