@@ -335,7 +335,7 @@ export default function Portfolio(): JSX.Element {
               <MusicIcon size={32} />
               <span className="text-lg font-medium">Listening to Music</span>
               <p className="text-sm opacity-80 text-center">
-                Oviously the only thing that keeps me focused while working.
+                Obviously the only thing that keeps me focused while working.
               </p>
               <iframe
                 src="https://open.spotify.com/embed/track/1WTlony1MLK4u5OaG8uTLg"
