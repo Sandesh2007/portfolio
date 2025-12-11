@@ -7,6 +7,7 @@ import React, { JSX } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Film, Github, Linkedin, Mail, MusicIcon } from "lucide-react";
 import Link from "next/link";
+import { FaHeart } from "react-icons/fa6";
 import { JavaOriginal, LinuxOriginal, PythonOriginal } from "devicons-react";
 import SpotlightCard from "@/components/*/Components/SpotlightCard/SpotlightCard";
 import { Button } from "@/components/ui/button";
@@ -40,9 +41,9 @@ const techMeta: Record<string, { icon: JSX.Element; hoverIcon?: JSX.Element; col
     GTK: { icon: <SiGtk size={30} />, color: "text-green-700" },
     GTK4: { icon: <SiGtk size={30} />, color: "text-green-700" },
     Flutter: { icon: <SiFlutter size={30} />, color: "text-sky-400" },
-    Java: { icon: <JavaOriginal size={30} />, color: "text-red-600" },
-    Linux: { icon: <LinuxOriginal size={30} />, color: "text-gray-700 dark:text-gray-200" },
-    Python: { icon: <PythonOriginal size={30} />, color: "text-yellow-600" },
+    Java: { icon: <JavaOriginal size={30} />, hoverIcon: <FaHeart color="red" />, color: "text-red-600" },
+    Linux: { icon: <LinuxOriginal size={30} />, hoverIcon: <FaHeart color="red" />, color: "text-gray-700 dark:text-gray-200" },
+    Python: { icon: <PythonOriginal size={30} />, hoverIcon: <FaHeart color="red" />, color: "text-yellow-600" },
 };
 
 const skills = ["React", "Next.js", "TypeScript", "Rust", "Supabase", "TailwindCSS", "GTK", "Flutter", "Java", "Linux", "Python"] as const;
@@ -122,7 +123,7 @@ export default function Portfolio(): JSX.Element {
 
                 {/* Skills */}
                 <section id="skills" className="py-16 px-6">
-                    <h2 className="text-3xl font-semibold text-center mb-8">Languages i worked with</h2>
+                    <h2 className="text-3xl font-semibold text-center mb-8">Things i worked with </h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
                         {skills.map((skill) => {
                             const meta = techMeta[skill];
