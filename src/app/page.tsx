@@ -207,7 +207,7 @@ export default function Portfolio(): JSX.Element {
 
                 {/* Contributed to */}
 
-                <section id="projects" className="py-16 px-6">
+                <section id="contributions" className="py-16 px-6">
                     <h2 className="text-3xl font-semibold text-center mb-2">Contributions</h2>
                     <p className="text-center opacity-80 mb-6">Some of the projects i contributed to.</p>
                     <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
